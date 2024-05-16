@@ -1,0 +1,86 @@
+@import "../../assets/styles/main.scss";
+
+.container {
+  @include width-wrapper;
+
+  .sortButtonsWrapper {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+
+    .sortTitle {
+      font-size: 14px;
+      margin-right: 16px;
+    }
+
+    .sortButton {
+      background-color: $light-gray-background-color;
+      border-radius: 8px;
+      border: 1px solid $light-gray-background-color;
+      margin: 4px;
+      line-height: 24px;
+      text-align: center;
+      padding: 4px 16px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      &:hover {
+        border: 1px solid $main-dark-color;
+        background-color: $base-white-color;
+        color: $main-dark-color;
+      }
+
+      svg {
+        margin-left: 4px;
+        width: 16px;
+        height: 16px;
+      }
+
+      &.active {
+        background-color: $main-dark-color;
+        color: $base-white-color;
+
+        svg {
+          path {
+            stroke: $base-white-color;
+          }
+        }
+      }
+    }
+  }
+
+  .eventsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .paginationBlock {
+    display: flex;
+    justify-content: center;
+
+    .paginationButton {
+      width: 32px;
+      height: 32px;
+      background-color: $light-gray-background-color;
+      border-radius: 8px;
+      border: 1px solid $light-gray-background-color;
+      margin: 8px;
+      font-size: 14px;
+      line-height: 32px;
+      text-align: center;
+
+      &:hover {
+        border: 1px solid $main-dark-color;
+        background-color: $base-white-color;
+        color: $main-dark-color;
+      }
+
+      &.active {
+        background-color: $main-dark-color;
+        color: $base-white-color;
+      }
+    }
+  }
+}

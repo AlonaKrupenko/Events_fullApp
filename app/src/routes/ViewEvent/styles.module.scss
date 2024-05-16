@@ -1,0 +1,30 @@
+@import "../../assets/styles/main.scss";
+
+.container {
+  @include width-wrapper;
+
+  .heading {
+    display: flex;
+    justify-content: space-between;
+    margin: 18px 0;
+  }
+
+  .searchInput {
+    @include primary-input;
+    width: unset;
+  }
+
+  .eventDetails {
+    margin: 16px 0;
+  }
+
+  .participantsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+  }
+
+  .button {
+    @include primary-button;
+  }
+}

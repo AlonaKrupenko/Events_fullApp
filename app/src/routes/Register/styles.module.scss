@@ -1,0 +1,93 @@
+@import "../../assets/styles/main.scss";
+
+.container {
+  @include width-wrapper;
+
+  .eventHeader {
+    margin: 16px 0;
+  }
+
+  .eventDetails {
+    margin: 16px 0;
+  }
+
+  .loadingMessage {
+    background-color: $light-gray-background-color;
+    margin: 0 auto;
+    padding: 24px;
+    min-width: 600px;
+    border-radius: 8px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .successMessage {
+    background-color: $light-gray-background-color;
+    margin: 0 auto;
+    padding: 24px;
+    min-width: 600px;
+    border-radius: 8px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .goBack {
+      @include primary-button;
+    }
+  }
+
+  .form {
+    background-color: $light-gray-background-color;
+    margin: 0 auto;
+    padding: 24px;
+    min-width: 600px;
+    border-radius: 8px;
+    width: 200px;
+
+    .formField {
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+
+      .formInput {
+        @include primary-input;
+        min-height: 48px;
+      }
+
+      .inputLabel {
+        margin-bottom: 8px;
+        font-size: 16px;
+      }
+
+      .radioLabel {
+        margin-right: 16px;
+
+        .radio {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .error {
+      font-size: 14px;
+      color: $gray-text-color;
+      align-self: flex-end;
+      position: absolute;
+    }
+
+    .buttonsBlock {
+      display: flex;
+      justify-content: space-between;
+
+      .button {
+        @include primary-button;
+        width: 120px;
+      }
+    }
+  }
+}

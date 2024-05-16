@@ -1,0 +1,34 @@
+@mixin width-wrapper {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+@mixin primary-button {
+  padding: 8px;
+  background-color: $main-dark-color;
+  border-radius: 8px;
+  color: $base-white-color;
+  min-width: 80px;
+  min-height: 40px;
+  vertical-align: middle;
+  text-align: center;
+
+  &:hover {
+    border: 1px solid $main-dark-color;
+    background-color: $base-white-color;
+    color: $main-dark-color;
+  }
+}
+
+@mixin primary-input {
+  padding: 8px;
+  min-height: 40px;
+  border: 1px solid $gray-text-color;
+  border-radius: 8px;
+  box-shadow: none;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../../assets/styles/main.scss";
+
+.participantCard {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: $light-gray-background-color;
+  color: $main-dark-color;
+  display: flex;
+  flex-direction: column;
+}

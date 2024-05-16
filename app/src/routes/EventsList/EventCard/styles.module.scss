@@ -1,0 +1,38 @@
+@import "./../../../assets/styles/main.scss";
+.card {
+  border-radius: 8px;
+  padding: 16px;
+  background-color: $light-gray-background-color;
+  height: 300px;
+  color: $main-dark-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .cardHeader {
+    font-size: 24px;
+  }
+
+  .cardDescription {
+    margin: 16px 0;
+    font-size: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .link {
+    width: 44%;
+
+    .button {
+      @include primary-button;
+      width: 100%;
+    }
+  }
+}
