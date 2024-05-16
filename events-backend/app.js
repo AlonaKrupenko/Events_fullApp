@@ -102,11 +102,15 @@ app.post("/api/events/:eventId/participants", async (req, res) => {
 });
 
 // Error Handling Middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).send("Something broke!");
+// });
+app.use(express.static(path.join(__dirname, "../events-app/build")));
+
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "../events-app/build", "index.html"));
 });
 
-// Server Port
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
