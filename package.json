@@ -4,14 +4,14 @@
   "description": "A fullstack app with separate frontend and backend",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"npm run start-frontend\" \"npm run start-backend\"",
+    "start": "npm run start-backend",
     "start-frontend": "cd app && npm start",
     "start-backend": "cd events-backend && npm start",
     "build": "npm run build-frontend && npm run build-backend",
     "build-frontend": "cd app && npm install && npm run build",
     "build-backend": "cd events-backend && npm install",
     "postinstall": "npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build-frontend"
   },
   "devDependencies": {
     "concurrently": "^7.0.0"

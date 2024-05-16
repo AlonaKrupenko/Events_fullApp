@@ -38,9 +38,9 @@ module.exports = Event;
 
 // Routes
 // Root route
-app.get("/", (req, res) => {
-  res.send("Welcome to the Events Registration API!");
-});
+// app.get("/", (req, res) => {
+//   res.send("Welcome to the Events Registration API!");
+// });
 
 // Get all events
 app.get("/api/events", async (req, res) => {
@@ -107,11 +107,10 @@ app.post("/api/events/:eventId/participants", async (req, res) => {
 //   console.error(err.stack);
 //   res.status(500).send("Something broke!");
 // });
-app.use(express.static(path.join(__dirname, "../events-app/build")));
-
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "../events-app/build", "index.html"));
-});
+app.use(express.static(path.join(__dirname, '../app/build')))
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../app/build'))
+})
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
