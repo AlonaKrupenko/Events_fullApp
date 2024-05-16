@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const dbURI = "mongodb://localhost/eventsdb"; // Replace with your MongoDB URI
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/eventsdb"; // Replace with your MongoDB URI
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
