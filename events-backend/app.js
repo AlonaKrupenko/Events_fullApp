@@ -6,12 +6,10 @@ const path = require("path");
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// MongoDB Connection
-const dbURI = process.env.MONGODB_URI || "mongodb://localhost/eventsdb"; // Replace with your MongoDB URI
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost/eventsdb";
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB connected"))
@@ -29,20 +27,13 @@ const EventSchema = new mongoose.Schema({
   description: { type: String, required: true },
   date: { type: Date, required: true },
   organizer: { type: String, required: true },
-  participants: [ParticipantSchema], // Array of participants
+  participants: [ParticipantSchema],
 });
 
 const Event = mongoose.model("Event", EventSchema);
 
 module.exports = Event;
 
-// Routes
-// Root route
-// app.get("/", (req, res) => {
-//   res.send("Welcome to the Events Registration API!");
-// });
-
-// Get all events
 app.get("/api/events", async (req, res) => {
   const { page = 1, limit = 12, sort = "title", direction = "asc" } = req.query;
   const sortOrder = direction === "asc" ? 1 : -1;
@@ -67,7 +58,6 @@ app.get("/api/events", async (req, res) => {
   }
 });
 
-//Get event buy Id
 app.get("/api/events/:eventId", async (req, res) => {
   const { eventId } = req.params;
 
@@ -76,16 +66,15 @@ app.get("/api/events/:eventId", async (req, res) => {
     if (!event) {
       return res.status(404).json({ message: "Event not found" });
     }
-    res.json(event); // Return only the participants array
+    res.json(event);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Assuming app.js or routes.js in your Node.js/Express app
 app.post("/api/events/:eventId/participants", async (req, res) => {
   const { eventId } = req.params;
-  const participant = req.body; // This should be the participant data sent from the frontend
+  const participant = req.body;
 
   try {
     const updatedEvent = await Event.findByIdAndUpdate(
@@ -102,15 +91,10 @@ app.post("/api/events/:eventId/participants", async (req, res) => {
   }
 });
 
-// Error Handling Middleware
-// app.use((err, req, res, next) => {
-//   console.error(err.stack);
-//   res.status(500).send("Something broke!");
-// });
-app.use(express.static(path.join(__dirname, '../app/build')))
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../app/build'))
-})
+app.use(express.static(path.join(__dirname, "../app/build")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../app/build"));
+});
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

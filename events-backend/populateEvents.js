@@ -21,9 +21,9 @@ const populateEvents = async () => {
     const newEvent = new Event({
       title: `Event ${i}`,
       description: `Description for Event ${i}`,
-      date: new Date(2024, 0, i), // January i, 2024
+      date: new Date(2024, 0, i), 
       organizer: `Organizer ${i}`,
-      participants: sampleParticipants, // Add sample participants to each event
+      participants: sampleParticipants, 
     });
 
     try {
