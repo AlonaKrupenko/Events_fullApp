@@ -14,7 +14,7 @@ const EventsList = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const url = `http://localhost:3001/api/events?page=${currentPage}&limit=12&sort=${sortField}&direction=${sortOrder}`;
+      const url = `/api/events?page=${currentPage}&limit=12&sort=${sortField}&direction=${sortOrder}`;
 
       try {
         const res = await axios.get(url);
