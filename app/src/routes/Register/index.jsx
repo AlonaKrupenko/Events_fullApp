@@ -40,10 +40,7 @@ const Register = () => {
     onSubmit: async (values) => {
       setLoading(true);
       try {
-        await axios.post(
-          `http://localhost:3001/api/events/${id}/participants`,
-          values
-        );
+        await axios.post(`/api/events/${id}/participants`, values);
         setLoading(false);
         setSubmittedSuccessfully(true);
         formik.resetForm();
