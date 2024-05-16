@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import styles from "./styles.module.scss";
 import axios from "axios";
 import * as Yup from "yup";
-import { getEventById } from "../../helpers/getEventById";
 import CheckmarkIcon from "../../assets/icons/checkmark";
 import { useFormik } from "formik";
 
@@ -15,12 +14,17 @@ const Register = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getEventById(id, handleDataChange);
-  }, [id]);
+    const fetchEvent = async () => {
+      try {
+        const response = await axios.get(`/api/events/${id}`);
+        setEventData(response.data);
+      } catch (error) {
+        console.error("Error fetching event:", error);
+      }
+    };
 
-  const handleDataChange = (data) => {
-    setEventData(data);
-  };
+    fetchEvent();
+  }, [id]);
 
   const formik = useFormik({
     initialValues: {

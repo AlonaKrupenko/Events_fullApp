@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import { Link, useParams } from "react-router-dom";
-import { getEventById } from "../../helpers/getEventById";
 import ParticipantCard from "./ParticipantCard/PatricipantCard";
+import axios from "axios";
 
 const ViewEvent = () => {
   const { id } = useParams();
@@ -11,12 +11,17 @@ const ViewEvent = () => {
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    getEventById(id, handleDataChange);
-  }, [id]);
+    const fetchEvent = async () => {
+      try {
+        const response = await axios.get(`/api/events/${id}`);
+        setEventData(response.data);
+      } catch (error) {
+        console.error("Error fetching event:", error);
+      }
+    };
 
-  const handleDataChange = (data) => {
-    setEventData(data);
-  };
+    fetchEvent();
+  }, [id]);
 
   return (
     <div className={styles.container}>
@@ -38,7 +43,7 @@ const ViewEvent = () => {
         <p>{`Event date: ${eventData?.date}`}</p>
       </div>
       <div className={styles.participantsList}>
-        {eventData.participants
+        {eventData?.participants
           ?.filter(
             (participant) =>
               participant.fullName
